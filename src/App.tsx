@@ -1,9 +1,12 @@
+import { useState } from "react";
 import clsx from "clsx";
 import Navigation from "./Components/Navigation";
 import Main from "./Components/Main/Main";
 import Footer from "./Components/Footer";
 
 function App() {
+    const [currentStep, setCurrentStep] = useState<number>(0);
+
     return (
         <section
             className={clsx(
@@ -24,8 +27,11 @@ function App() {
                 )}
             >
                 <Navigation />
-                <Main />
-                <Footer />
+                <Main currentStep={currentStep} />
+                <Footer
+                    currentStep={currentStep}
+                    setCurrentStep={setCurrentStep}
+                />
             </div>
         </section>
     );

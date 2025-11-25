@@ -1,11 +1,37 @@
-function Footer() {
+import React from "react";
+
+type Props = {
+    currentStep: number;
+    setCurrentStep: React.Dispatch<React.SetStateAction<number>>;
+};
+
+function Footer({ currentStep, setCurrentStep }: Props) {
+    const prevStep = () => {
+        setCurrentStep((prev) => prev - 1);
+    };
+
+    const nextStep = () => {
+        setCurrentStep((prev) => {
+            if (prev >= 3) {
+                return prev;
+            }
+            return prev + 1;
+        });
+    };
+
     return (
         <footer className="bg-neutral-white flex h-full w-full items-center justify-center md:col-start-2">
             <div className="flex w-full justify-between px-4 lg:px-20">
-                <button className="text-neutral-grey-500 font-bold">
-                    {false && <span>Go Back</span>}
+                <button
+                    onClick={prevStep}
+                    className="text-neutral-grey-500 font-bold"
+                >
+                    {currentStep > 0 && <span>Go Back</span>}
                 </button>
-                <button className="bg-primary-blue-950 text-neutral-white h-10 w-[100px] rounded-sm">
+                <button
+                    onClick={nextStep}
+                    className="bg-primary-blue-950 text-neutral-white h-10 w-[100px] rounded-sm"
+                >
                     Next Step
                 </button>
             </div>

@@ -1,7 +1,15 @@
 import clsx from "clsx";
-import { Header, Form } from "./FirstStep";
+import Header from "./Header";
+import FirstStep from "./FirstStep";
+import SecondStep from "./SecondStep";
 
-function Main() {
+type Props = {
+    currentStep: number;
+};
+
+export function Main({ currentStep }: Props) {
+    const steps = [<FirstStep />, <SecondStep />];
+
     return (
         <main className={clsx("relative flex items-center justify-center")}>
             <div
@@ -14,10 +22,9 @@ function Main() {
                     "lg:px-20 lg:py-10",
                 )}
             >
-                <Header />
-                <form>
-                    <Form />
-                </form>
+                <Header currentStep={currentStep} />
+
+                <form>{steps[currentStep]}</form>
             </div>
         </main>
     );

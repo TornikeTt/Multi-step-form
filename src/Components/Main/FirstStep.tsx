@@ -1,17 +1,4 @@
-export const Header = () => {
-    return (
-        <header>
-            <h1 className="text-primary-blue-950 text-3xl font-bold">
-                Personal info
-            </h1>
-            <p className="text-neutral-grey-500 mt-1">
-                Please provide your name, email address, and phone number.
-            </p>
-        </header>
-    );
-};
-
-export const Form = () => {
+const FirstStep = () => {
     const inputFieldsData = [
         {
             label: "Name",
@@ -58,3 +45,5 @@ export const Form = () => {
         <div className="flex size-full flex-col gap-5">{inputFieldsData}</div>
     );
 };
+
+export default FirstStep;
