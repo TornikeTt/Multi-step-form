@@ -26,7 +26,7 @@ function App() {
                     "lg:h-[600px] lg:w-[900px]",
                 )}
             >
-                <Navigation />
+                <Navigation currentStep={currentStep} />
                 <Main currentStep={currentStep} />
                 <Footer
                     currentStep={currentStep}

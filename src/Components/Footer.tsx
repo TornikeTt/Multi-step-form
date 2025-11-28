@@ -21,16 +21,16 @@ function Footer({ currentStep, setCurrentStep }: Props) {
 
     return (
         <footer className="bg-neutral-white flex h-full w-full items-center justify-center md:col-start-2">
-            <div className="flex w-full justify-between px-4 lg:px-20">
+            <div className="flex w-full justify-between px-6 lg:px-20">
                 <button
                     onClick={prevStep}
-                    className="text-neutral-grey-500 font-bold"
+                    className="text-neutral-grey-500 cursor-pointer font-bold"
                 >
                     {currentStep > 0 && <span>Go Back</span>}
                 </button>
                 <button
                     onClick={nextStep}
-                    className="bg-primary-blue-950 text-neutral-white h-10 w-[100px] rounded-sm"
+                    className="bg-primary-blue-950 text-neutral-white h-10 w-[100px] cursor-pointer rounded-sm"
                 >
                     Next Step
                 </button>

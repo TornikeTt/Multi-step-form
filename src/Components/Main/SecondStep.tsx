@@ -1,5 +1,97 @@
-function SecondStep() {
-    return <h1>Hello from SecondStep</h1>;
+import clsx from "clsx";
+import arcade from "../../assets/images/icon-arcade.svg";
+import advanced from "../../assets/images/icon-advanced.svg";
+import pro from "../../assets/images/icon-pro.svg";
+
+type Props = {
+    isYearly: boolean;
+    setIsYearly: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+function SecondStep({ isYearly, setIsYearly }: Props) {
+    const planOptions = [
+        { icon: arcade, name: "Arcade", price: isYearly ? "90/yr" : "9/mo" },
+        {
+            icon: advanced,
+            name: "Advanced",
+            price: isYearly ? "120/yr" : "12/mo",
+        },
+        { icon: pro, name: "Pro", price: isYearly ? "150/yr" : "15/mo" },
+    ];
+
+    const toggleBillingType = (
+        e: React.MouseEvent<HTMLButtonElement>,
+    ): void => {
+        e.preventDefault();
+        setIsYearly((prev) => !prev);
+    };
+
+    return (
+        <div className="flex flex-col gap-4">
+            <div
+                className={clsx(
+                    //base
+                    "flex flex-col gap-4",
+                    //md
+                    "md:flex-row md:justify-between",
+                )}
+            >
+                {planOptions.map((each, index) => {
+                    return (
+                        <button
+                            onClick={(e) => e.preventDefault()}
+                            key={index}
+                            className={clsx(
+                                // base
+                                "border-neutral-grey-500 flex cursor-pointer gap-4 rounded-lg border p-4 text-left",
+                                // md
+                                "md:flex-1 md:flex-col md:justify-between",
+                                // active state
+                                "focus:border-primary-purple-600 focus:bg-neutral-blue-100",
+                            )}
+                        >
+                            <img
+                                className="size-10"
+                                src={each.icon}
+                                alt={each.name}
+                            />
+                            <div className="md:mt-10">
+                                <h1 className="text-primary-blue-950 font-medium">
+                                    {each.name}
+                                </h1>
+                                <span className="text-neutral-grey-500">
+                                    ${each.price}
+                                </span>
+                                {isYearly && (
+                                    <p className="text-primary-blue-950 text-sm font-medium">
+                                        2 months free
+                                    </p>
+                                )}
+                            </div>
+                        </button>
+                    );
+                })}
+            </div>
+
+            <div className="bg-neutral-blue-50 mt-3 flex items-center justify-evenly rounded p-3">
+                <p className="text-primary-blue-950 font-medium">Monthly</p>
+                <button
+                    onClick={toggleBillingType}
+                    className="bg-primary-blue-950 h-5 w-10 rounded-2xl px-1"
+                >
+                    <div
+                        className={clsx(
+                            // base
+                            "bg-neutral-white h-3 w-3 rounded-full transition-transform duration-300 outline-none",
+                            // conditionaly
+                            isYearly ? "translate-x-5" : "translate-x-0",
+                        )}
+                    ></div>
+                </button>
+                <p className="text-neutral-grey-500">Yearly</p>
+            </div>
+        </div>
+    );
 }
 
 export default SecondStep;

@@ -1,15 +1,25 @@
 import clsx from "clsx";
 
-function Navigation() {
+function Navigation({ currentStep }: { currentStep: number }) {
     const signupSteps = [
         { step: 1, text: "YOUR INFO" },
         { step: 2, text: "SELECT PLAN" },
         { step: 3, text: "ADD-ONS" },
         { step: 4, text: "SUMMARY" },
     ].map((each, index) => {
+        const isCurrentStep = currentStep == index;
         return (
             <div className="md:flex md:items-center md:gap-4" key={index}>
-                <button className="border-neutral-white text-neutral-white flex size-[35px] items-center justify-center rounded-full border">
+                <button
+                    className={clsx(
+                        // base
+                        "flex size-[35px] items-center justify-center rounded-full border",
+                        // conditional
+                        isCurrentStep
+                            ? "bg-primary-blue-200 border-none font-bold text-black"
+                            : "border-neutral-white text-neutral-white",
+                    )}
+                >
                     {each.step}
                 </button>
 

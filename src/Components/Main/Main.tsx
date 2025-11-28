@@ -1,3 +1,4 @@
+import { useState } from "react";
 import clsx from "clsx";
 import Header from "./Header";
 import FirstStep from "./FirstStep";
@@ -8,14 +9,26 @@ type Props = {
 };
 
 export function Main({ currentStep }: Props) {
-    const steps = [<FirstStep />, <SecondStep />];
+    const [isYearly, setIsYearly] = useState(false);
+
+    const steps = [
+        <FirstStep />,
+        <SecondStep isYearly={isYearly} setIsYearly={setIsYearly} />,
+    ];
 
     return (
-        <main className={clsx("relative flex items-center justify-center")}>
+        <main
+            className={clsx(
+                // base
+                "relative flex min-h-[480px] items-center justify-center",
+                // md
+                "md:min-h-0",
+            )}
+        >
             <div
                 className={clsx(
                     // base
-                    "bg-neutral-white absolute -top-15 flex w-[90%] max-w-[480px] flex-col justify-between gap-10 rounded-lg p-4 shadow-lg",
+                    "bg-neutral-white absolute -top-15 flex w-[90%] max-w-[480px] flex-col justify-between gap-5 rounded-lg p-6 shadow-lg",
                     // md
                     "md:top-0 md:w-full md:max-w-none md:rounded-none md:shadow-none",
                     //lg

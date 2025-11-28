@@ -24,7 +24,7 @@ function Header({ currentStep }: { currentStep: number }) {
 
     return (
         <header>
-            <h1 className="text-primary-blue-950 text-3xl font-bold">
+            <h1 className="text-primary-blue-950 text-2xl font-bold md:text-3xl">
                 {headerContent[currentStep].title}
             </h1>
             <p className="text-neutral-grey-500 mt-1">
