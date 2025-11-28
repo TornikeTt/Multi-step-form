@@ -9,14 +9,20 @@ type Props = {
 };
 
 function SecondStep({ isYearly, setIsYearly }: Props) {
-    const planOptions = [
-        { icon: arcade, name: "Arcade", price: isYearly ? "90/yr" : "9/mo" },
+    const inputFieldsData = [
         {
+            id: 1,
+            icon: arcade,
+            name: "Arcade",
+            price: isYearly ? "90/yr" : "9/mo",
+        },
+        {
+            id: 2,
             icon: advanced,
             name: "Advanced",
             price: isYearly ? "120/yr" : "12/mo",
         },
-        { icon: pro, name: "Pro", price: isYearly ? "150/yr" : "15/mo" },
+        { id: 3, icon: pro, name: "Pro", price: isYearly ? "150/yr" : "15/mo" },
     ];
 
     const toggleBillingType = (
@@ -36,7 +42,7 @@ function SecondStep({ isYearly, setIsYearly }: Props) {
                     "md:flex-row md:justify-between",
                 )}
             >
-                {planOptions.map((each, index) => {
+                {inputFieldsData.map((each, index) => {
                     return (
                         <label
                             key={index}

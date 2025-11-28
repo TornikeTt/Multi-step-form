@@ -1,32 +1,36 @@
 import clsx from "clsx";
 
 function ThirdStep({ isYearly }: { isYearly: boolean }) {
-    const data = [
+    const inputFieldsData = [
         {
+            id: 1,
+            name: "onlineService",
             title: "Online Service",
             subtitle: "Access to multiplayer games",
-            plan: isYearly ? "+$10/yr" : "+$1/mo",
+            price: isYearly ? "+$10/yr" : "+$1/mo",
         },
-
         {
+            id: 2,
+            name: "largerStorage",
             title: "Larger storage",
             subtitle: "Extra 1TB of cloud save",
-            plan: isYearly ? "+$20/yr" : "+$2/mo",
+            price: isYearly ? "+$20/yr" : "+$2/mo",
         },
-
         {
+            id: 3,
+            name: "customizableProfile",
             title: "Customizable profile",
             subtitle: "Custom theme on your profile",
-            plan: isYearly ? "+$20/yr" : "+$2/mo",
+            price: isYearly ? "+$20/yr" : "+$2/mo",
         },
     ];
 
     return (
         <div className="flex flex-col gap-4">
-            {data.map((each, index) => {
+            {inputFieldsData.map((each) => {
                 return (
                     <label
-                        key={index}
+                        key={each.id}
                         htmlFor={each.title}
                         className={clsx(
                             // base
@@ -40,6 +44,7 @@ function ThirdStep({ isYearly }: { isYearly: boolean }) {
                         <input
                             id={each.title}
                             type="checkbox"
+                            name={each.name}
                             className="size-5"
                         />
                         <div className="leading-[0.5px]">
@@ -52,7 +57,7 @@ function ThirdStep({ isYearly }: { isYearly: boolean }) {
                         </div>
 
                         <p className="text-primary-purple-600 ml-auto text-sm font-medium">
-                            {each.plan}
+                            {each.price}
                         </p>
                     </label>
                 );
