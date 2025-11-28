@@ -38,18 +38,25 @@ function SecondStep({ isYearly, setIsYearly }: Props) {
             >
                 {planOptions.map((each, index) => {
                     return (
-                        <button
-                            onClick={(e) => e.preventDefault()}
+                        <label
                             key={index}
+                            htmlFor={each.name}
                             className={clsx(
                                 // base
                                 "border-neutral-grey-500 flex cursor-pointer gap-4 rounded-lg border p-4 text-left",
                                 // md
                                 "md:flex-1 md:flex-col md:justify-between",
                                 // active state
-                                "focus:border-primary-purple-600 focus:bg-neutral-blue-100",
+                                "has-checked:border-primary-purple-600 has-checked:bg-neutral-blue-100",
                             )}
                         >
+                            <input
+                                type="radio"
+                                name="plan"
+                                id={each.name}
+                                value={each.name}
+                                className="hidden"
+                            />
                             <img
                                 className="size-10"
                                 src={each.icon}
@@ -68,7 +75,7 @@ function SecondStep({ isYearly, setIsYearly }: Props) {
                                     </p>
                                 )}
                             </div>
-                        </button>
+                        </label>
                     );
                 })}
             </div>
