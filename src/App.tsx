@@ -4,8 +4,13 @@ import Navigation from "./Components/Navigation";
 import Main from "./Components/Main/Main";
 import Footer from "./Components/Footer";
 
+import type { CollectedData } from "./types";
+
 function App() {
-    const [currentStep, setCurrentStep] = useState<number>(0);
+    const [currentStep, setCurrentStep] = useState(0);
+    const [collectedData, setCollectedData] = useState<CollectedData>({
+        step1: { name: "", email: "", phone: "" },
+    });
 
     return (
         <section
@@ -27,10 +32,15 @@ function App() {
                 )}
             >
                 <Navigation currentStep={currentStep} />
-                <Main currentStep={currentStep} />
+                <Main
+                    currentStep={currentStep}
+                    collectedData={collectedData}
+                    setCollectedData={setCollectedData}
+                />
                 <Footer
                     currentStep={currentStep}
                     setCurrentStep={setCurrentStep}
+                    collectedData={collectedData}
                 />
             </div>
         </section>

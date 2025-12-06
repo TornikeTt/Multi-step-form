@@ -1,11 +1,16 @@
 import React from "react";
 
+import type { CollectedData } from "../types";
+
 type Props = {
     currentStep: number;
     setCurrentStep: React.Dispatch<React.SetStateAction<number>>;
+    collectedData: CollectedData;
 };
 
-function Footer({ currentStep, setCurrentStep }: Props) {
+function Footer(props: Props) {
+    const { currentStep, setCurrentStep, collectedData } = props;
+
     const prevStep = () => {
         setCurrentStep((prev) => prev - 1);
     };

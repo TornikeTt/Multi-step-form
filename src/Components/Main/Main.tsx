@@ -5,15 +5,19 @@ import FirstStep from "./FirstStep";
 import SecondStep from "./SecondStep";
 import ThirdStep from "./ThirdStep";
 
+import type { CollectedData } from "../../types";
+
 type Props = {
     currentStep: number;
+    collectedData: CollectedData;
+    setCollectedData: React.Dispatch<React.SetStateAction<CollectedData>>;
 };
 
-export function Main({ currentStep }: Props) {
+export function Main({ currentStep, collectedData, setCollectedData }: Props) {
     const [isYearly, setIsYearly] = useState(false);
 
-    const steps = [
-        <FirstStep />,
+    const setupSteps = [
+        <FirstStep setStep1Data={setCollectedData} />,
         <SecondStep isYearly={isYearly} setIsYearly={setIsYearly} />,
         <ThirdStep isYearly={isYearly} />,
     ];
@@ -39,7 +43,7 @@ export function Main({ currentStep }: Props) {
             >
                 <Header currentStep={currentStep} />
 
-                <form>{steps[currentStep]}</form>
+                <form>{setupSteps[currentStep]}</form>
             </div>
         </main>
     );
