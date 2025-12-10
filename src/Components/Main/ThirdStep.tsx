@@ -1,6 +1,14 @@
 import clsx from "clsx";
 
-function ThirdStep({ isYearly }: { isYearly: boolean }) {
+import type { step3DataType } from "../../types";
+
+type Props = {
+    isYearly: boolean;
+    step3Data: step3DataType;
+    setStep3Data: React.Dispatch<React.SetStateAction<step3DataType>>;
+};
+
+function ThirdStep({ isYearly, step3Data, setStep3Data }: Props) {
     const inputFieldsData = [
         {
             id: 1,
@@ -25,6 +33,20 @@ function ThirdStep({ isYearly }: { isYearly: boolean }) {
         },
     ];
 
+    const gatherData = (name: string, checked: boolean) => {
+        const selectedItem = inputFieldsData.find((each) => each.name === name);
+
+        setStep3Data((prev) => {
+            if (checked) {
+                return { ...prev, [name]: selectedItem };
+            } else {
+                // remove the item
+                const { [name]: _, ...rest } = prev;
+                return rest;
+            }
+        });
+    };
+
     return (
         <div className="flex flex-col gap-4">
             {inputFieldsData.map((each) => {
@@ -42,6 +64,14 @@ function ThirdStep({ isYearly }: { isYearly: boolean }) {
                         )}
                     >
                         <input
+                            onChange={(e) =>
+                                gatherData(each.name, e.target.checked)
+                            }
+                            checked={
+                                step3Data[each.name]?.name === each.name
+                                    ? true
+                                    : false
+                            }
                             id={each.title}
                             type="checkbox"
                             name={each.name}

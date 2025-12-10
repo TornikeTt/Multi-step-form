@@ -4,7 +4,7 @@ import Navigation from "./Components/Navigation";
 import Main from "./Components/Main/Main";
 import Footer from "./Components/Footer";
 
-import type { step1DataType, step2DataType } from "./types";
+import type { step1DataType, step2DataType, step3DataType } from "./types";
 
 function App() {
     const [currentStep, setCurrentStep] = useState(0);
@@ -18,6 +18,12 @@ function App() {
     const [step2Data, setStep2Data] = useState<step2DataType>({
         name: "",
         price: "",
+    });
+
+    const [step3Data, setStep3Data] = useState<step3DataType>({
+        onlineService: [],
+        largerStorage: [],
+        customizableProfile: [],
     });
 
     return (
@@ -46,12 +52,15 @@ function App() {
                     setStep1Data={setStep1Data}
                     step2Data={step2Data}
                     setStep2Data={setStep2Data}
+                    step3Data={step3Data}
+                    setStep3Data={setStep3Data}
                 />
                 <Footer
                     currentStep={currentStep}
                     setCurrentStep={setCurrentStep}
                     step1Data={step1Data}
                     step2Data={step2Data}
+                    step3Data={step3Data}
                 />
             </div>
         </section>

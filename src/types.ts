@@ -7,5 +7,10 @@ export type step1DataType = {
 export type step2DataType = {
     name: string;
     price: string;
-    status?: boolean;
+};
+
+export type step3DataType = {
+    onlineService: string[];
+    largerStorage: string[];
+    customizableProfile: string[];
 };

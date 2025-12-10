@@ -1,16 +1,18 @@
 import React from "react";
 
-import type { step1DataType, step2DataType } from "../types";
+import type { step1DataType, step2DataType, step3DataType } from "../types";
 
 type Props = {
     currentStep: number;
     setCurrentStep: React.Dispatch<React.SetStateAction<number>>;
     step1Data: step1DataType;
     step2Data: step2DataType;
+    step3Data: step3DataType;
 };
 
 function Footer(props: Props) {
-    const { currentStep, setCurrentStep, step1Data, step2Data } = props;
+    const { currentStep, setCurrentStep, step1Data, step2Data, step3Data } =
+        props;
 
     const prevStep = () => {
         setCurrentStep((prev) => prev - 1);
@@ -34,6 +36,16 @@ function Footer(props: Props) {
             case 1:
                 if (step2Data.name === "" && step2Data.price === "") {
                     alert("Please select one option");
+                    return;
+                }
+                break;
+            case 2:
+                const isValid = Object.values(step3Data).some(
+                    (arr) => arr.length === undefined,
+                );
+
+                if (!isValid) {
+                    alert("Please select at least one option.");
                     return;
                 }
                 break;

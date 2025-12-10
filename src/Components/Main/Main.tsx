@@ -5,7 +5,7 @@ import FirstStep from "./FirstStep";
 import SecondStep from "./SecondStep";
 import ThirdStep from "./ThirdStep";
 
-import type { step1DataType, step2DataType } from "../../types";
+import type { step1DataType, step2DataType, step3DataType } from "../../types";
 
 type Props = {
     currentStep: number;
@@ -13,11 +13,20 @@ type Props = {
     setStep1Data: React.Dispatch<React.SetStateAction<step1DataType>>;
     step2Data: step2DataType;
     setStep2Data: React.Dispatch<React.SetStateAction<step2DataType>>;
+    step3Data: step3DataType;
+    setStep3Data: React.Dispatch<React.SetStateAction<step3DataType>>;
 };
 
 export function Main(props: Props) {
-    const { currentStep, step1Data, setStep1Data, step2Data, setStep2Data } =
-        props;
+    const {
+        currentStep,
+        step1Data,
+        setStep1Data,
+        step2Data,
+        setStep2Data,
+        step3Data,
+        setStep3Data,
+    } = props;
 
     const [isYearly, setIsYearly] = useState(false);
 
@@ -29,7 +38,11 @@ export function Main(props: Props) {
             step2Data={step2Data}
             setStep2Data={setStep2Data}
         />,
-        <ThirdStep isYearly={isYearly} />,
+        <ThirdStep
+            isYearly={isYearly}
+            step3Data={step3Data}
+            setStep3Data={setStep3Data}
+        />,
     ];
 
     return (
