@@ -5,20 +5,30 @@ import FirstStep from "./FirstStep";
 import SecondStep from "./SecondStep";
 import ThirdStep from "./ThirdStep";
 
-import type { step1DataType } from "../../types";
+import type { step1DataType, step2DataType } from "../../types";
 
 type Props = {
     currentStep: number;
     step1Data: step1DataType;
     setStep1Data: React.Dispatch<React.SetStateAction<step1DataType>>;
+    step2Data: step2DataType;
+    setStep2Data: React.Dispatch<React.SetStateAction<step2DataType>>;
 };
 
-export function Main({ currentStep, step1Data, setStep1Data }: Props) {
+export function Main(props: Props) {
+    const { currentStep, step1Data, setStep1Data, step2Data, setStep2Data } =
+        props;
+
     const [isYearly, setIsYearly] = useState(false);
 
     const setupSteps = [
         <FirstStep step1Data={step1Data} setStep1Data={setStep1Data} />,
-        <SecondStep isYearly={isYearly} setIsYearly={setIsYearly} />,
+        <SecondStep
+            isYearly={isYearly}
+            setIsYearly={setIsYearly}
+            step2Data={step2Data}
+            setStep2Data={setStep2Data}
+        />,
         <ThirdStep isYearly={isYearly} />,
     ];
 

@@ -3,3 +3,9 @@ export type step1DataType = {
     email: { value: string; status: boolean };
     phone: { value: string; status: boolean };
 };
+
+export type step2DataType = {
+    name: string;
+    price: string;
+    status?: boolean;
+};

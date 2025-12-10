@@ -1,14 +1,18 @@
 import React from "react";
-import type { step1DataType } from "../types";
+
+import type { step1DataType, step2DataType } from "../types";
 
 type Props = {
     currentStep: number;
     setCurrentStep: React.Dispatch<React.SetStateAction<number>>;
     step1Data: step1DataType;
+    step2Data: step2DataType;
+    setStep2Data: React.Dispatch<React.SetStateAction<step2DataType>>;
 };
 
 function Footer(props: Props) {
-    const { currentStep, setCurrentStep, step1Data } = props;
+    const { currentStep, setCurrentStep, step1Data, step2Data, setStep2Data } =
+        props;
 
     const prevStep = () => {
         setCurrentStep((prev) => prev - 1);
@@ -19,11 +23,21 @@ function Footer(props: Props) {
             (field) => field.status === true && field.value.trim() !== "",
         );
 
-        if (!isStep1Complete) {
-            alert(
-                "Please fill in all required fields correctly before continuing.",
-            );
-            return;
+        switch (currentStep) {
+            case 0:
+                if (!isStep1Complete) {
+                    alert(
+                        "Please fill in all required fields correctly before continuing.",
+                    );
+                    return;
+                }
+                break;
+            case 1:
+                if (step2Data.name === "" && step2Data.price === "") {
+                    setStep2Data((prev) => ({ ...prev, status: !prev.status }));
+                    return;
+                }
+                break;
         }
 
         setCurrentStep((prev) => {

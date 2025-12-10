@@ -3,12 +3,15 @@ import arcade from "../../assets/images/icon-arcade.svg";
 import advanced from "../../assets/images/icon-advanced.svg";
 import pro from "../../assets/images/icon-pro.svg";
 
+import type { step2DataType } from "../../types";
 type Props = {
     isYearly: boolean;
     setIsYearly: React.Dispatch<React.SetStateAction<boolean>>;
+    step2Data: step2DataType;
+    setStep2Data: React.Dispatch<React.SetStateAction<step2DataType>>;
 };
 
-function SecondStep({ isYearly, setIsYearly }: Props) {
+function SecondStep({ isYearly, setIsYearly, step2Data, setStep2Data }: Props) {
     const inputFieldsData = [
         {
             id: 1,
@@ -32,6 +35,10 @@ function SecondStep({ isYearly, setIsYearly }: Props) {
         setIsYearly((prev) => !prev);
     };
 
+    const getherData = (name: string, price: string) => {
+        setStep2Data({ name: name, price: price, status: true });
+    };
+
     return (
         <div className="flex flex-col gap-4">
             <div
@@ -45,6 +52,7 @@ function SecondStep({ isYearly, setIsYearly }: Props) {
                 {inputFieldsData.map((each, index) => {
                     return (
                         <label
+                            onClick={() => getherData(each.name, each.price)}
                             key={index}
                             htmlFor={each.name}
                             className={clsx(
@@ -54,6 +62,10 @@ function SecondStep({ isYearly, setIsYearly }: Props) {
                                 "md:flex-1 md:flex-col md:justify-between",
                                 // active state
                                 "has-checked:border-primary-purple-600 has-checked:bg-neutral-blue-100",
+
+                                step2Data.name == each.name
+                                    ? "border-primary-purple-600"
+                                    : "",
                             )}
                         >
                             <input
@@ -103,6 +115,12 @@ function SecondStep({ isYearly, setIsYearly }: Props) {
                 </button>
                 <p className="text-neutral-grey-500">Yearly</p>
             </div>
+
+            {!step2Data.status && (
+                <span className="text-primary-red-500 text-[10px] font-bold md:text-xs">
+                    Please choose one of them
+                </span>
+            )}
         </div>
     );
 }
