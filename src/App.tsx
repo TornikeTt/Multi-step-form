@@ -18,7 +18,6 @@ function App() {
     const [step2Data, setStep2Data] = useState<step2DataType>({
         name: "",
         price: "",
-        status: true,
     });
 
     return (
@@ -53,7 +52,6 @@ function App() {
                     setCurrentStep={setCurrentStep}
                     step1Data={step1Data}
                     step2Data={step2Data}
-                    setStep2Data={setStep2Data}
                 />
             </div>
         </section>

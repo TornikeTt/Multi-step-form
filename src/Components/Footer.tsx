@@ -7,24 +7,23 @@ type Props = {
     setCurrentStep: React.Dispatch<React.SetStateAction<number>>;
     step1Data: step1DataType;
     step2Data: step2DataType;
-    setStep2Data: React.Dispatch<React.SetStateAction<step2DataType>>;
 };
 
 function Footer(props: Props) {
-    const { currentStep, setCurrentStep, step1Data, step2Data, setStep2Data } =
-        props;
+    const { currentStep, setCurrentStep, step1Data, step2Data } = props;
 
     const prevStep = () => {
         setCurrentStep((prev) => prev - 1);
     };
 
     const nextStep = () => {
-        const isStep1Complete = Object.values(step1Data).every(
-            (field) => field.status === true && field.value.trim() !== "",
-        );
-
         switch (currentStep) {
             case 0:
+                const isStep1Complete = Object.values(step1Data).every(
+                    (field) =>
+                        field.status === true && field.value.trim() !== "",
+                );
+
                 if (!isStep1Complete) {
                     alert(
                         "Please fill in all required fields correctly before continuing.",
@@ -34,7 +33,7 @@ function Footer(props: Props) {
                 break;
             case 1:
                 if (step2Data.name === "" && step2Data.price === "") {
-                    setStep2Data((prev) => ({ ...prev, status: !prev.status }));
+                    alert("Please select one option");
                     return;
                 }
                 break;

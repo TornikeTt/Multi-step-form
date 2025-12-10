@@ -36,7 +36,7 @@ function SecondStep({ isYearly, setIsYearly, step2Data, setStep2Data }: Props) {
     };
 
     const getherData = (name: string, price: string) => {
-        setStep2Data({ name: name, price: price, status: true });
+        setStep2Data({ name: name, price: price });
     };
 
     return (
@@ -115,12 +115,6 @@ function SecondStep({ isYearly, setIsYearly, step2Data, setStep2Data }: Props) {
                 </button>
                 <p className="text-neutral-grey-500">Yearly</p>
             </div>
-
-            {!step2Data.status && (
-                <span className="text-primary-red-500 text-[10px] font-bold md:text-xs">
-                    Please choose one of them
-                </span>
-            )}
         </div>
     );
 }
