@@ -1,21 +1,31 @@
 import React from "react";
-
-import type { CollectedData } from "../types";
+import type { step1DataType } from "../types";
 
 type Props = {
     currentStep: number;
     setCurrentStep: React.Dispatch<React.SetStateAction<number>>;
-    collectedData: CollectedData;
+    step1Data: step1DataType;
 };
 
 function Footer(props: Props) {
-    const { currentStep, setCurrentStep, collectedData } = props;
+    const { currentStep, setCurrentStep, step1Data } = props;
 
     const prevStep = () => {
         setCurrentStep((prev) => prev - 1);
     };
 
     const nextStep = () => {
+        const isStep1Complete = Object.values(step1Data).every(
+            (field) => field.status === true && field.value.trim() !== "",
+        );
+
+        if (!isStep1Complete) {
+            alert(
+                "Please fill in all required fields correctly before continuing.",
+            );
+            return;
+        }
+
         setCurrentStep((prev) => {
             if (prev >= 3) {
                 return prev;

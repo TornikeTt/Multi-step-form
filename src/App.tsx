@@ -4,12 +4,14 @@ import Navigation from "./Components/Navigation";
 import Main from "./Components/Main/Main";
 import Footer from "./Components/Footer";
 
-import type { CollectedData } from "./types";
+import type { step1DataType } from "./types";
 
 function App() {
     const [currentStep, setCurrentStep] = useState(0);
-    const [collectedData, setCollectedData] = useState<CollectedData>({
-        step1: { name: "", email: "", phone: "" },
+    const [step1Data, setStep1Data] = useState<step1DataType>({
+        name: { value: "", status: true },
+        email: { value: "", status: true },
+        phone: { value: "", status: true },
     });
 
     return (
@@ -34,13 +36,13 @@ function App() {
                 <Navigation currentStep={currentStep} />
                 <Main
                     currentStep={currentStep}
-                    collectedData={collectedData}
-                    setCollectedData={setCollectedData}
+                    step1Data={step1Data}
+                    setStep1Data={setStep1Data}
                 />
                 <Footer
                     currentStep={currentStep}
                     setCurrentStep={setCurrentStep}
-                    collectedData={collectedData}
+                    step1Data={step1Data}
                 />
             </div>
         </section>

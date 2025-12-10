@@ -1,8 +1,5 @@
-export type CollectedData = {
-    step1: {
-        name: string;
-        email: string;
-        phone: string;
-    };
-    // step2: { ... }
+export type step1DataType = {
+    name: { value: string; status: boolean };
+    email: { value: string; status: boolean };
+    phone: { value: string; status: boolean };
 };
