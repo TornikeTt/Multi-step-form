@@ -40,9 +40,10 @@ function Footer(props: Props) {
                 }
                 break;
             case 2:
-                const isValid = Object.values(step3Data).some(
-                    (arr) => arr.length === undefined,
-                );
+                const isValid = Object.values(step3Data).some((each) => {
+                    let arr = Object.keys(each);
+                    return arr.length > 0;
+                });
 
                 if (!isValid) {
                     alert("Please select at least one option.");

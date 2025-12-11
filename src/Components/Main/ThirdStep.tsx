@@ -41,7 +41,7 @@ function ThirdStep({ isYearly, step3Data, setStep3Data }: Props) {
                 return { ...prev, [name]: selectedItem };
             } else {
                 // remove the item
-                const { [name]: _, ...rest } = prev;
+                const { [name as keyof step3DataType]: _, ...rest } = prev;
                 return rest;
             }
         });
@@ -68,7 +68,8 @@ function ThirdStep({ isYearly, step3Data, setStep3Data }: Props) {
                                 gatherData(each.name, e.target.checked)
                             }
                             checked={
-                                step3Data[each.name]?.name === each.name
+                                step3Data[each.name as keyof step3DataType]
+                                    ?.name === each.name
                                     ? true
                                     : false
                             }

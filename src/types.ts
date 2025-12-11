@@ -9,8 +9,16 @@ export type step2DataType = {
     price: string;
 };
 
+type step3Items = {
+    id?: number;
+    name?: string;
+    title?: string;
+    subtitle?: string;
+    price?: string;
+};
+
 export type step3DataType = {
-    onlineService: string[];
-    largerStorage: string[];
-    customizableProfile: string[];
+    onlineService?: step3Items;
+    largerStorage?: step3Items;
+    customizableProfile?: step3Items;
 };

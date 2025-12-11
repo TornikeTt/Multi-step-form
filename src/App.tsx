@@ -7,7 +7,7 @@ import Footer from "./Components/Footer";
 import type { step1DataType, step2DataType, step3DataType } from "./types";
 
 function App() {
-    const [currentStep, setCurrentStep] = useState(0);
+    const [currentStep, setCurrentStep] = useState(2);
 
     const [step1Data, setStep1Data] = useState<step1DataType>({
         name: { value: "", status: true },
@@ -21,9 +21,9 @@ function App() {
     });
 
     const [step3Data, setStep3Data] = useState<step3DataType>({
-        onlineService: [],
-        largerStorage: [],
-        customizableProfile: [],
+        onlineService: {},
+        largerStorage: {},
+        customizableProfile: {},
     });
 
     return (
