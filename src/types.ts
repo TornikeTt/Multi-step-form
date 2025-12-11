@@ -6,7 +6,8 @@ export type step1DataType = {
 
 export type step2DataType = {
     name: string;
-    price: string;
+    monthlyPrice: string;
+    yearlyPrice: string;
 };
 
 type step3Items = {
@@ -14,7 +15,8 @@ type step3Items = {
     name?: string;
     title?: string;
     subtitle?: string;
-    price?: string;
+    monthlyPrice?: string;
+    yearlyPrice?: string;
 };
 
 export type step3DataType = {

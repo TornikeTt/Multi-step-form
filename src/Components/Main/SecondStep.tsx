@@ -11,32 +11,41 @@ type Props = {
     setStep2Data: React.Dispatch<React.SetStateAction<step2DataType>>;
 };
 
-function SecondStep({ isYearly, setIsYearly, step2Data, setStep2Data }: Props) {
-    const inputFieldsData = [
-        {
-            id: 1,
-            icon: arcade,
-            name: "Arcade",
-            price: isYearly ? "90/yr" : "9/mo",
-        },
-        {
-            id: 2,
-            icon: advanced,
-            name: "Advanced",
-            price: isYearly ? "120/yr" : "12/mo",
-        },
-        { id: 3, icon: pro, name: "Pro", price: isYearly ? "150/yr" : "15/mo" },
-    ];
+const inputFieldsData = [
+    {
+        id: 1,
+        icon: arcade,
+        name: "Arcade",
+        monthlyPrice: "9/mo",
+        yearlyPrice: "90/yr",
+    },
+    {
+        id: 2,
+        icon: advanced,
+        name: "Advanced",
+        monthlyPrice: "12/mo",
+        yearlyPrice: "120/yr",
+    },
+    {
+        id: 3,
+        icon: pro,
+        name: "Pro",
+        monthlyPrice: "15/mo",
+        yearlyPrice: "150/yr",
+    },
+];
 
-    const toggleBillingType = (
-        e: React.MouseEvent<HTMLButtonElement>,
-    ): void => {
-        e.preventDefault();
+function SecondStep({ isYearly, setIsYearly, step2Data, setStep2Data }: Props) {
+    const toggleBillingType = (): void => {
         setIsYearly((prev) => !prev);
     };
 
-    const getherData = (name: string, price: string) => {
-        setStep2Data({ name: name, price: price });
+    const getherData = (
+        name: string,
+        monthlyPrice: string,
+        yearlyPrice: string,
+    ) => {
+        setStep2Data({ name, monthlyPrice, yearlyPrice });
     };
 
     return (
@@ -52,7 +61,13 @@ function SecondStep({ isYearly, setIsYearly, step2Data, setStep2Data }: Props) {
                 {inputFieldsData.map((each, index) => {
                     return (
                         <label
-                            onClick={() => getherData(each.name, each.price)}
+                            onClick={() =>
+                                getherData(
+                                    each.name,
+                                    each.monthlyPrice,
+                                    each.yearlyPrice,
+                                )
+                            }
                             key={index}
                             htmlFor={each.name}
                             className={clsx(
@@ -85,7 +100,9 @@ function SecondStep({ isYearly, setIsYearly, step2Data, setStep2Data }: Props) {
                                     {each.name}
                                 </h1>
                                 <span className="text-neutral-grey-500">
-                                    ${each.price}
+                                    {isYearly
+                                        ? each.yearlyPrice
+                                        : each.monthlyPrice}
                                 </span>
                                 {isYearly && (
                                     <p className="text-primary-blue-950 text-sm font-medium">
@@ -102,6 +119,7 @@ function SecondStep({ isYearly, setIsYearly, step2Data, setStep2Data }: Props) {
                 <p className="text-primary-blue-950 font-medium">Monthly</p>
                 <button
                     onClick={toggleBillingType}
+                    type="button"
                     className="bg-primary-blue-950 h-5 w-10 rounded-2xl px-1"
                 >
                     <div

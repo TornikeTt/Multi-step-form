@@ -4,6 +4,7 @@ import Header from "./Header";
 import FirstStep from "./FirstStep";
 import SecondStep from "./SecondStep";
 import ThirdStep from "./ThirdStep";
+import FourthStep from "./FouthStep";
 
 import type { step1DataType, step2DataType, step3DataType } from "../../types";
 
@@ -42,6 +43,12 @@ export function Main(props: Props) {
             isYearly={isYearly}
             step3Data={step3Data}
             setStep3Data={setStep3Data}
+        />,
+        <FourthStep
+            isYearly={isYearly}
+            setIsYearly={setIsYearly}
+            step2Data={step2Data}
+            step3Data={step3Data}
         />,
     ];
 

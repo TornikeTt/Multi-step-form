@@ -8,31 +8,34 @@ type Props = {
     setStep3Data: React.Dispatch<React.SetStateAction<step3DataType>>;
 };
 
-function ThirdStep({ isYearly, step3Data, setStep3Data }: Props) {
-    const inputFieldsData = [
-        {
-            id: 1,
-            name: "onlineService",
-            title: "Online Service",
-            subtitle: "Access to multiplayer games",
-            price: isYearly ? "+$10/yr" : "+$1/mo",
-        },
-        {
-            id: 2,
-            name: "largerStorage",
-            title: "Larger storage",
-            subtitle: "Extra 1TB of cloud save",
-            price: isYearly ? "+$20/yr" : "+$2/mo",
-        },
-        {
-            id: 3,
-            name: "customizableProfile",
-            title: "Customizable profile",
-            subtitle: "Custom theme on your profile",
-            price: isYearly ? "+$20/yr" : "+$2/mo",
-        },
-    ];
+const inputFieldsData = [
+    {
+        id: 1,
+        name: "onlineService",
+        title: "Online Service",
+        subtitle: "Access to multiplayer games",
+        monthlyPrice: "+$1/mo",
+        yearlyPrice: "+$10/yr",
+    },
+    {
+        id: 2,
+        name: "largerStorage",
+        title: "Larger storage",
+        subtitle: "Extra 1TB of cloud save",
+        monthlyPrice: "+$2/mo",
+        yearlyPrice: "+$20/yr",
+    },
+    {
+        id: 3,
+        name: "customizableProfile",
+        title: "Customizable profile",
+        subtitle: "Custom theme on your profile",
+        monthlyPrice: "+$2/mo",
+        yearlyPrice: "+$20/yr",
+    },
+];
 
+function ThirdStep({ isYearly, step3Data, setStep3Data }: Props) {
     const gatherData = (name: string, checked: boolean) => {
         const selectedItem = inputFieldsData.find((each) => each.name === name);
 
@@ -88,7 +91,7 @@ function ThirdStep({ isYearly, step3Data, setStep3Data }: Props) {
                         </div>
 
                         <p className="text-primary-purple-600 ml-auto text-sm font-medium">
-                            {each.price}
+                            {isYearly ? each.yearlyPrice : each.monthlyPrice}
                         </p>
                     </label>
                 );

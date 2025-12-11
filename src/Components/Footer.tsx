@@ -34,7 +34,11 @@ function Footer(props: Props) {
                 }
                 break;
             case 1:
-                if (step2Data.name === "" && step2Data.price === "") {
+                if (
+                    step2Data.name === "" &&
+                    step2Data.monthlyPrice === "" &&
+                    step2Data.yearlyPrice === ""
+                ) {
                     alert("Please select one option");
                     return;
                 }
