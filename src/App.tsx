@@ -3,11 +3,13 @@ import clsx from "clsx";
 import Navigation from "./Components/Navigation";
 import Main from "./Components/Main/Main";
 import Footer from "./Components/Footer";
+import ThankYou from "./Components/ThankYou";
 
 import type { step1DataType, step2DataType, step3DataType } from "./types";
 
 function App() {
     const [currentStep, setCurrentStep] = useState(0);
+    const [isFormCompleted, setIsFormColpleted] = useState(false);
 
     const [step1Data, setStep1Data] = useState<step1DataType>({
         name: { value: "", status: true },
@@ -47,22 +49,29 @@ function App() {
                 )}
             >
                 <Navigation currentStep={currentStep} />
-                <Main
-                    currentStep={currentStep}
-                    step1Data={step1Data}
-                    setStep1Data={setStep1Data}
-                    step2Data={step2Data}
-                    setStep2Data={setStep2Data}
-                    step3Data={step3Data}
-                    setStep3Data={setStep3Data}
-                />
-                <Footer
-                    currentStep={currentStep}
-                    setCurrentStep={setCurrentStep}
-                    step1Data={step1Data}
-                    step2Data={step2Data}
-                    step3Data={step3Data}
-                />
+                {isFormCompleted ? (
+                    <ThankYou />
+                ) : (
+                    <>
+                        <Main
+                            currentStep={currentStep}
+                            step1Data={step1Data}
+                            setStep1Data={setStep1Data}
+                            step2Data={step2Data}
+                            setStep2Data={setStep2Data}
+                            step3Data={step3Data}
+                            setStep3Data={setStep3Data}
+                        />
+                        <Footer
+                            currentStep={currentStep}
+                            setCurrentStep={setCurrentStep}
+                            step1Data={step1Data}
+                            step2Data={step2Data}
+                            step3Data={step3Data}
+                            setIsFormColpleted={setIsFormColpleted}
+                        />
+                    </>
+                )}
             </div>
         </section>
     );

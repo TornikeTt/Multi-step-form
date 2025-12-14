@@ -1,6 +1,7 @@
 import React from "react";
 
 import type { step1DataType, step2DataType, step3DataType } from "../types";
+import { clsx } from "clsx";
 
 type Props = {
     currentStep: number;
@@ -8,11 +9,18 @@ type Props = {
     step1Data: step1DataType;
     step2Data: step2DataType;
     step3Data: step3DataType;
+    setIsFormColpleted: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 function Footer(props: Props) {
-    const { currentStep, setCurrentStep, step1Data, step2Data, step3Data } =
-        props;
+    const {
+        currentStep,
+        setCurrentStep,
+        step1Data,
+        step2Data,
+        step3Data,
+        setIsFormColpleted,
+    } = props;
 
     const prevStep = () => {
         setCurrentStep((prev) => prev - 1);
@@ -54,6 +62,8 @@ function Footer(props: Props) {
                     return;
                 }
                 break;
+            case 3:
+                setIsFormColpleted(true);
         }
 
         setCurrentStep((prev) => {
@@ -75,9 +85,14 @@ function Footer(props: Props) {
                 </button>
                 <button
                     onClick={nextStep}
-                    className="bg-primary-blue-950 text-neutral-white h-10 w-[100px] cursor-pointer rounded-sm"
+                    className={clsx(
+                        "text-neutral-white h-10 w-[100px] cursor-pointer rounded-sm",
+                        currentStep === 3
+                            ? "bg-primary-purple-600"
+                            : "bg-primary-blue-950",
+                    )}
                 >
-                    Next Step
+                    {currentStep === 3 ? "confirm" : "Next Step"}
                 </button>
             </div>
         </footer>
