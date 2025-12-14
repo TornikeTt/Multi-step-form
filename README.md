@@ -10,6 +10,14 @@ The project guides users through a structured 4-step form process with validatio
 This project implements a **multi-step form workflow** where users must complete each step correctly before continuing.  
 The goal is to provide a smooth user experience with clear validation and feedback.
 
+## 🚀 Live Demo
+
+<div>
+  <a href="https://strong-strudel-e73aa3.netlify.app/" target="_blank">
+    <strong>🌐 View Live Demo</strong>
+  </a>
+</div>
+
 ### ✨ Features
 
 - 4-step guided form flow
@@ -59,16 +67,6 @@ The goal is to provide a smooth user experience with clear validation and feedba
 - **React**
 - **TypeScript**
 - **Vite**
-
----
-
-## 🚀 Live Demo
-
-<div>
-  <a href="https://strong-strudel-e73aa3.netlify.app/" target="_blank">
-    <strong>🌐 View Live Demo</strong>
-  </a>
-</div>
 
 ---
 
