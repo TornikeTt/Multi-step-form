@@ -18,6 +18,8 @@ The goal is to provide a smooth user experience with clear validation and feedba
   </a>
 </div>
 
+---
+
 ### ✨ Features
 
 - 4-step guided form flow
